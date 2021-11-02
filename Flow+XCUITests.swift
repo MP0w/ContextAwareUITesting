@@ -7,12 +7,12 @@
 
 import XCTest
 
-func verify(flow: Flow,
+func verify(flow: Screen,
             app: XCUIApplication,
             timeout: TimeInterval = 0.5,
             retries: Int = 5) {
     var steps: [RawStep] = []
-    var next: Step? = flow.last
+    var next: Step? = flow.previous
 
     while let current = next {
         switch current {
@@ -21,8 +21,6 @@ func verify(flow: Flow,
         case let .some(action, context, previous):
             next = previous
             steps.append(RawStep(action: action, context: context))
-        case let .end(last):
-            next = last
         }
     }
     

@@ -12,7 +12,7 @@ class ExampleTest: XCTestCase {
             .goToScreenThree()
             .whenVisible()
             .dismiss()
-            .whenVisible().end()
+            .whenVisible()
         
         verify(flow: flow, app: app)
     }
@@ -27,7 +27,7 @@ struct ScreenOne: Screen {
     }
     
     func goToScreenTwo() -> ScreenTwo {
-        ScreenTwo(previous: Step(action: .buttonTap(id: "next"), context: id, previous: previous))
+        segue(action: .buttonTap(id: "next"))
     }
 }
 
@@ -40,7 +40,7 @@ struct ScreenTwo: Screen {
     }
     
     func goToScreenThree() -> ScreenThree {
-        ScreenThree(previous: Step(action: .buttonTap(id: "nextTwo"), context: id, previous: previous))
+        segue(action: .buttonTap(id: "nextTwo"))
     }
 }
 
@@ -53,6 +53,6 @@ struct ScreenThree: Screen {
     }
     
     func dismiss() -> ScreenTwo {
-        ScreenTwo(previous: Step(action: .buttonTap(id: "close"), context: id, previous: previous))
+        segue(action: .buttonTap(id: "close"))
     }
 }
