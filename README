@@ -1,0 +1,8 @@
+# Context Aware UI Testing
+
+A prototype for a random idea to write E2E tests in a declarative way.
+This allows the UI test to recover from issues (e.g. network errors), less needs for waits, etc... You would get retrying for free and resilience.
+
+Uses the screen abstraction pattern but creates a list of "steps" instead of using the driver directly.
+Then it goes one by one, in case something fails will ask the app for the current screen id and restart from the first step on that screen.
+(currently XCUITest doesn't let you query the current screen id, I did an hack for that but there are some ways to eventually implement it).
